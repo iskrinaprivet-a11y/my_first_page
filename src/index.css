@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+/* Базовый экран приложения. Тёмная тема зашита в цвета компонентов,
+   поэтому здесь только сброс браузера и запрет прокрутки/выделения:
+   холст занимает весь viewport и не «прыгает». */
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background-color: #020617;
+  color: #e2e8f0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Полосы прокрутки в панелях — неброские, под тёмную тему. */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(51 65 85);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
