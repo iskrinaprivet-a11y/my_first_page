@@ -524,9 +524,15 @@ function screenPointOf(event: { clientX: number; clientY: number }): ScreenPoint
       : null
 
   return (
-    <div className="relative min-w-0 flex-1 overflow-hidden bg-slate-950 select-none">
+    <div className="relative min-w-0 flex-1 overflow-hidden bg-canvas select-none">
       {/* Сетка: едет вместе с камерой, размер ячейки зависит от зума. */}
       <div className="absolute inset-0" style={gridStyle} />
+
+      {/* Подпись страницы. pointer-events-none — иначе она перехватывала бы
+          клики мыши в верхней части холста и мешала рисованию. */}
+      <p className="pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-md bg-panel/90 px-3 py-1.5 text-xs tracking-wide text-slate-300 ring-1 ring-edge select-none">
+        Мой первый сайт в интернете!
+      </p>
 
       {/* Мир фигур. Один transform на весь слой — координаты фигур остаются
           «как в файле», а экранные пиксели появляются только в CSS.
@@ -582,7 +588,7 @@ function screenPointOf(event: { clientX: number; clientY: number }): ScreenPoint
           className="pointer-events-none absolute inset-3 flex items-center justify-center rounded-xl border-2 border-dashed border-sky-400/70 bg-sky-500/10"
           aria-hidden="true"
         >
-          <span className="rounded-md bg-slate-900/90 px-3 py-1.5 text-xs text-sky-200 ring-1 ring-sky-500/40">
+          <span className="rounded-md bg-panel/90 px-3 py-1.5 text-xs text-sky-200 ring-1 ring-sky-500/40">
             Отпустите, чтобы вставить картинку
           </span>
         </div>
@@ -590,13 +596,13 @@ function screenPointOf(event: { clientX: number; clientY: number }): ScreenPoint
 
       {/* Служебная панель: зум и подсказки по управлению. */}
       <div className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-2 text-[11px] text-slate-400">
-        <span className="rounded-md bg-slate-900/80 px-2 py-1 ring-1 ring-slate-700/70">
+        <span className="rounded-md bg-panel/80 px-2 py-1 ring-1 ring-edge/70">
           Пробел + мышь — панорама · колесо — зум
         </span>
-        <span className="rounded-md bg-slate-900/80 px-2 py-1 ring-1 ring-slate-700/70">
+        <span className="rounded-md bg-panel/80 px-2 py-1 ring-1 ring-edge/70">
           {UNDO_HINT} — отменить · {REDO_HINT} — вернуть
         </span>
-        <span className="rounded-md bg-slate-900/80 px-2 py-1 ring-1 ring-slate-700/70">
+        <span className="rounded-md bg-panel/80 px-2 py-1 ring-1 ring-edge/70">
           {INSERT_IMAGE_HINT}
         </span>
         {isDrawTool(activeTool) && (
@@ -606,12 +612,12 @@ function screenPointOf(event: { clientX: number; clientY: number }): ScreenPoint
         )}
       </div>
 
-      <div className="absolute right-3 bottom-3 flex items-center gap-1 rounded-lg bg-slate-900/90 p-1 text-xs text-slate-300 ring-1 ring-slate-700">
+      <div className="absolute right-3 bottom-3 flex items-center gap-1 rounded-lg bg-panel/90 p-1 text-xs text-slate-300 ring-1 ring-edge">
         <button
           type="button"
           onClick={() => zoomFromCenter(1 / ZOOM_STEP)}
           disabled={!canZoomOut}
-          className="h-6 w-6 rounded-md text-slate-200 transition hover:bg-slate-700/70 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-6 w-6 rounded-md text-slate-200 transition hover:bg-edge/70 disabled:cursor-not-allowed disabled:opacity-40"
           title="Отдалить"
         >
           −
@@ -620,7 +626,7 @@ function screenPointOf(event: { clientX: number; clientY: number }): ScreenPoint
           type="button"
           onClick={() => zoomFromCenter(ZOOM_STEP)}
           disabled={!canZoomIn}
-          className="h-6 w-14 rounded-md transition hover:bg-slate-700/70 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-6 w-14 rounded-md transition hover:bg-edge/70 disabled:cursor-not-allowed disabled:opacity-40"
           title="Приблизить"
         >
           {zoomPercent}%
@@ -628,7 +634,7 @@ function screenPointOf(event: { clientX: number; clientY: number }): ScreenPoint
         <button
           type="button"
           onClick={() => centerView(canvasSize())}
-          className="h-6 rounded-md px-2 text-slate-200 transition hover:bg-slate-700/70"
+          className="h-6 rounded-md px-2 text-slate-200 transition hover:bg-edge/70"
           title="Сбросить вид"
         >
           1:1

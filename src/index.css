@@ -1,5 +1,15 @@
 @import 'tailwindcss';
 
+/* Палитра сиреневых поверхностей. Раньше тема держалась на slate-*: канвас
+   и корпус — bg-slate-950, панели — bg-slate-900, границы — border-slate-800.
+   Здесь те же три ступени яркости, но с сиреневым оттенком, поэтому светлый
+   текст (text-slate-200/300/400) остаётся читаемым и менять его не пришлось. */
+@theme {
+  --color-canvas: #201833; /* холст и корпус — самая тёмная ступень */
+  --color-panel: #2b2142; /* панели инструментов, свойств и слоёв */
+  --color-edge: #3b2e58; /* границы и разделители */
+}
+
 /* Базовый экран приложения. Тёмная тема зашита в цвета компонентов,
    поэтому здесь только сброс браузера и запрет прокрутки/выделения:
    холст занимает весь viewport и не «прыгает». */
@@ -18,7 +28,7 @@ body {
   margin: 0;
   overflow: hidden;
   overscroll-behavior: none;
-  background-color: #020617;
+  background-color: var(--color-canvas);
   color: #e2e8f0;
   font-family:
     system-ui,
@@ -39,7 +49,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgb(51 65 85);
+  background-color: var(--color-edge);
   border-radius: 9999px;
 }
 

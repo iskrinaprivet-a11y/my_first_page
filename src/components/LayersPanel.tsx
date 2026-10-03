@@ -60,7 +60,7 @@ function LayerRow({
         'outline-offset-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400',
         isActive
           ? 'bg-sky-500/15 text-sky-200 ring-1 ring-sky-500/30'
-          : 'text-slate-300 hover:bg-slate-800',
+          : 'text-slate-300 hover:bg-edge',
       ].join(' ')}
     >
       {/* Образец: форма повторяет вид фигуры, поэтому строка читается с одного взгляда.

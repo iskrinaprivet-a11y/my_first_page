@@ -84,7 +84,7 @@ function ColorField({ label, color, fallback, onChange }: ColorFieldProps) {
 
 export default function PropertiesPanel({ shape, onChange }: PropertiesPanelProps) {
   return (
-    <section className="flex flex-col gap-3 border-b border-slate-800 p-3">
+    <section className="flex flex-col gap-3 border-b border-edge p-3">
       <header className="flex items-center justify-between">
         <h2 className="text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
           Свойства
@@ -109,7 +109,7 @@ export default function PropertiesPanel({ shape, onChange }: PropertiesPanelProp
             /* У картинки нет заливки и обводки — пикеров цвета здесь не может
                быть по типам, а не «скрыты за ненадобностью». Показываем
                собственный размер файла: по нему видно, во что он вписан. */
-            <div className="space-y-1.5 border-t border-slate-800 pt-2">
+            <div className="space-y-1.5 border-t border-edge pt-2">
               <Row label="Разрешение" value={`${shape.width} × ${shape.height}`} />
               <p className="text-[10px] leading-relaxed text-slate-600">
                 Картинка вставлена из буфера или файла. Её можно двигать, удалять
@@ -117,7 +117,7 @@ export default function PropertiesPanel({ shape, onChange }: PropertiesPanelProp
               </p>
             </div>
           ) : (
-            <div className="space-y-1.5 border-t border-slate-800 pt-2">
+            <div className="space-y-1.5 border-t border-edge pt-2">
               <ColorField
                 label="Заливка"
                 color={shape.fill}

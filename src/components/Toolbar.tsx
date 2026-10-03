@@ -44,7 +44,7 @@ function ToolIcon({ id }: { id: Tool }) {
 
 export default function Toolbar({ activeTool, onToolChange }: ToolbarProps) {
   return (
-    <aside className="flex w-16 shrink-0 flex-col items-center gap-1 border-r border-slate-800 bg-slate-900 py-3">
+    <aside className="flex w-16 shrink-0 flex-col items-center gap-1 border-r border-edge bg-panel py-3">
       {TOOLS.map((tool) => {
         const isActive = tool.id === activeTool
 

@@ -89,7 +89,7 @@ export default function App() {
   })
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-slate-950 text-slate-200">
+    <div className="flex h-screen w-screen overflow-hidden bg-canvas text-slate-200">
       <Toolbar activeTool={activeTool} onToolChange={setActiveTool} />
 
       <Canvas
@@ -102,7 +102,7 @@ export default function App() {
         onInsertImages={insertImages}
       />
 
-      <aside className="flex w-64 shrink-0 flex-col border-l border-slate-800 bg-slate-900">
+      <aside className="flex w-64 shrink-0 flex-col border-l border-edge bg-panel">
         <PropertiesPanel shape={selectedShape} onChange={updateShape} />
         <LayersPanel
           shapes={shapes}
